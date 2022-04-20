@@ -26,6 +26,7 @@ public with sharing class QueueableRecipes implements Queueable {
         List<Account> accounts = [
             SELECT Id, Description
             FROM Account
+            WHERE Name LIKE 'A%'
             LIMIT 1000
         ];
         for (Account acct : accounts) {

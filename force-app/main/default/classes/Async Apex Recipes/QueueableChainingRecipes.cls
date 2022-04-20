@@ -22,7 +22,10 @@ public with sharing class QueueableChainingRecipes implements Queueable {
      * System.enqueueJob(new QueueableChainingRecipes());
      **/
     public static void execute(QueueableContext context) {
-        List<Account> accounts = [SELECT Id, Description FROM Account];
+        List<Account> accounts = [
+            SELECT Id, Description 
+            FROM Account
+            WHERE Name LIKE 'A%'];
         for (Account acct : accounts) {
             acct.Description += ' Edited by first chained Queuable';
         }
